@@ -133,3 +133,34 @@ for i in range(3):
 raw.sort()
 print(raw)
 ```
+
+# 006 斐波那契数列
+```python
+def fib(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+num = int(input("斐波那契数列个数："))
+fib_list = []
+for i in range(1,num + 1):
+    fib_list.append(fib(i))
+    print(fib(i))
+print(fib_list)
+```
+
+# 007：列表复制
+## 题目：将一个列表的数据复制到另外一个列表
+## 程序分析：使用列表[:]
+```python
+n = int(input("输入列表中元素个数："))
+a_list = []
+b_list = []
+for i in range(1, n + 1):
+    print("第%d个元素为：" %i,end="")
+    temp = int(input())
+    a_list.append(temp)
+b_list = a_list[:]
+print("a_list:",a_list,"b_list:",b_list)
+```
