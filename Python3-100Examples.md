@@ -164,3 +164,13 @@ for i in range(1, n + 1):
 b_list = a_list[:]
 print("a_list:",a_list,"b_list:",b_list)
 ```
+
+# 008:99乘法表
+## 题目：输出9*9乘法口诀表
+## 程序分析：分行与列考虑，共9行9列，i控制行，j控制列。
+```python
+for i in range(1,10):
+    print()
+    for j in range(1,i+1):
+        print("%2d *%2d = %2d" %(j, i, j*i),end=" ")
+```
