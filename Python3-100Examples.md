@@ -174,3 +174,40 @@ for i in range(1,10):
     for j in range(1,i+1):
         print("%2d *%2d = %2d" %(j, i, j*i),end=" ")
 ```
+
+# 009：暂停输出
+## 题目：暂停1s输出
+```python
+import time
+
+my_list = [1,2,3,4]
+for i in my_list:
+    print(time.strftime("%H:%M:%S",time.localtime()),":",i)
+    time.sleep(1)
+```
+
+# 010：格式化输出时间
+## 题目：暂停1s输出，并格式化当前时间
+```python
+import time
+
+print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
+time.sleep(1)
+print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())))
+```
+
+# 011：兔子数量
+## 题目：古典问题：有一对兔子，从出生后第3个月起每个月都生一对兔子，小兔子长到第三个月后每个月又生一对兔子，假如兔子都不死，问每个月的兔子总数为多少？
+## 程序分析：将兔子分为1月兔、2月兔以及成年兔
+```python
+month = int(input("一共几个月："))
+rabbit_1 = 1         # 一月兔数量
+rabbit_2 = 0         # 二月兔数量
+rabbit_elder = 0        # 成年兔数量
+for i in range(month):
+    print("第%d个月共有"%(i+1), rabbit_1 + rabbit_2 +rabbit_elder,"对兔子，其中")
+    print("1月兔数量：", rabbit_1)
+    print("2月兔数量：", rabbit_2)
+    print("成年兔数量：", rabbit_elder) 
+    rabbit_1, rabbit_2, rabbit_elder = rabbit_elder + rabbit_2, rabbit_1, rabbit_elder + rabbit_2
+```
