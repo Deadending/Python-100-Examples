@@ -257,3 +257,103 @@ for n in range(100,1000):
         l.append(n)
 print("所有的水仙花数为：", l)
 ```
+
+# 14：因数分解
+## 题目：将一个正整数分解质因数
+## 程序分析：对n进行质因数分解，应先找到一个最小的质数k，然后按下述步骤完成：
+1）if n==k，完成；
+2）if n<>k，但n能被k整除，则打印k，并n=n/k，重复1）
+3）如果n不能被k整除，则k=k+1，重复1）
+```python
+def ReduceNum(n):
+    print('{} = '.format(n),end=" ")
+    if not isinstance(n,int) or n<= 0:
+        print("请输入一个正确的数字！")
+    elif n in [1]:
+        print('{}'.format(n))
+    while n not in [1]:
+        for index in range(2,n+1):
+            if n % index == 0:
+                n = n // index
+                if n == 1:
+                    print(index)
+                else:
+                    print('{} *'.format(index),end=" ")
+                break
+
+
+if __name__ == "__main__":
+    num = int(input("输入要被分解的数："))
+    ReduceNum(num)
+```
+
+# 15：条件嵌套
+## 题目：利用条件运算符的嵌套来完成此题：学习成绩>=90分的同学用A表示，60-89分之间的用B表示，60分以下的用C表示
+## 程序分析：(a>b) ? a : b
+- 实现方法一
+```python
+def ScoreLevel(score):
+    if score>= 90:
+        return 'A'
+    elif score >= 80:
+        return 'B'
+    else:
+        return 'C'
+
+if __name__ == "__main__":
+    score = int(input("输入分数：\n"))
+    level = ScoreLevel(score)
+    print("%d 属于 %s" %(score, level))
+
+```
+- 实现方法二
+```python
+score = int(input("输入分数：\n"))
+level = 'A' if score >= 90 else 'B' if score >= 80 else 'C'
+print("%d 属于 %s" %(score, level))
+```
+
+# 016:日期格式
+## 题目：输出指定格式的日期
+```python
+import datetime
+import time
+
+
+if __name__ == "__main__":
+    print(time.time())
+    print(time.localtime())
+    print(time.asctime())
+    print(time.strftime('%Y-%m-%d %H-%M-%S', time.localtime()))
+    print(time.strftime('%H-%M-%S %d-%m-%Y', time.localtime()))
+
+    print(datetime.date.today().strftime('%d-%m-%Y'))
+```
+
+# 017：字符统计
+## 题目：输入一行字符，分别统计出其中英文字母、空格、数字和其它字符的个数。
+```python
+import string
+
+def String_Count(s):
+    letters = 0
+    space = 0
+    digit = 0
+    others = 0
+    for ele in s:
+        if ele.isalpha():
+            letters += 1
+        elif ele.isspace():
+            space += 1
+        elif ele.isdigit():
+            digit += 1
+        else:
+            others += 1
+    return letters,space,digit,others
+
+
+if __name__ == '__main__':
+    s = input("输入一个字符串：")
+    (letters,space,digit,others) = String_Count(s)
+    print("字母%d个，空格%d个，数字%d个，其他%d个" %(letters,space,digit,others))
+```
