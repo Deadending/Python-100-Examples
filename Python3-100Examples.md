@@ -357,3 +357,73 @@ if __name__ == '__main__':
     (letters,space,digit,others) = String_Count(s)
     print("字母%d个，空格%d个，数字%d个，其他%d个" %(letters,space,digit,others))
 ```
+
+# 018：数列求和
+## 题目：求s=a+aa+aaa+aa...a的值，a和n由外部输入
+```python
+from functools import reduce
+
+
+def AddSum(a,n):
+    temp = 0
+    ele = []
+    sum = 0
+    for i in range(1,n+1):
+        temp = temp + a
+        a = a * 10
+        ele.append(temp)
+    sum = reduce(lambda x,y:x+y, ele)
+    return sum
+
+
+if __name__ == '__main__':
+    a = int(input("输入a的值："))
+    n = int(input("输入n的值："))
+    sum = AddSum(a, n)
+    print('和为%d' %sum)
+```
+
+# 019:求“完数”
+## 题目：一个数如果恰好等于它的因子之和，这个数就称为"完数"。例如6=1＋2＋3.编程找出1000以内的所有完数。
+- 实现方法一
+```python
+import math
+def ReduceNum(num):
+    sum = 1
+    for i in range(2,math.ceil(math.sqrt(num))):
+        if num % i == 0:
+            sum = sum + i + num / i
+    return sum
+
+
+if __name__ == '__main__':
+    goal = []
+    n = int(input("输入完数范围："))
+    for i in range(3,n):
+        sum = ReduceNum(i)
+        if i == sum:
+            goal.append(i)
+    print('完数有：', goal)
+```
+
+- 实现方法二
+```python
+import math
+
+n = int(input("输入完数范围："))
+goal = []
+for i in range(2,n+1):
+    sum = 1
+    ele = [1]
+    for j in range(2,math.ceil(math.sqrt(i))):
+        if i % j == 0:
+            ele.append(j)
+            ele.append(i/j)
+            sum = sum + j + i/j
+    if sum == i:
+        goal.append(i)
+        print('%d为完数' %i)
+        ele.sort()
+        print(ele)
+print('完数有：', goal)
+```
