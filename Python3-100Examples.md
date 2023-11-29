@@ -358,7 +358,7 @@ if __name__ == '__main__':
     print("字母%d个，空格%d个，数字%d个，其他%d个" %(letters,space,digit,others))
 ```
 
-# 018：数列求和
+# 018：数列求和一
 ## 题目：求s=a+aa+aaa+aa...a的值，a和n由外部输入
 ```python
 from functools import reduce
@@ -426,4 +426,95 @@ for i in range(2,n+1):
         ele.sort()
         print(ele)
 print('完数有：', goal)
+```
+
+# 020：自由落体
+## 题目：一球从100米高度自由落下，每次落地后反跳回原高度的一半；再落下，求它在第10次落地时，共经过多少米？第10次反弹多高？
+```python
+height = int(input("输入起始高度："))   #起始高度
+times = int(input("输入落地次数："))    #下降次数
+
+height_list = []     #每一次反弹后的高度
+
+for i in range(1, times + 1):
+    height = height/2
+    height_list.append(height)
+
+print('第%d次落地后共经过%f米' %(times,sum(height_list) * 2 + 100))
+print('第%d次反弹%f米高' %(times,height_list[-1]))
+```
+
+# 021：猴子吃桃
+## 题目：猴子吃桃问题：猴子第一天摘下若干个桃子，当即吃了一半，还不瘾，又多吃了一个。第二天早上又将剩下的桃子吃掉一半，又多吃了一个。以后每天早上都吃了前一天剩下的一半零一个。到第10天早上想再吃时，见只剩下一个桃子了。求第一天共摘了多少？
+```python
+num = 1     #最后剩下一个
+days = int(input('输入天数：'))
+for i in range(0,9):
+    num = (num + 1) * 2
+print('第一天一共摘了%d个桃子' %num)
+```
+
+# 022：比赛名单
+## 题目：两个乒乓球队进行比赛，各出三人。甲队为a,b,c三人，乙队为x,y,z三人。已抽签决定比赛名单。有人向队员打听比赛的名单。a说他不和x比，c说他不和x,z比，请编程序找出三队赛手的名单。
+```python
+for a in ['y', 'z']:
+    for b in ['x', 'y', 'z']:
+        for c in ['y']:
+            if (a != b) and (b != c) and (c != a):
+                print('比赛选手名单为:a--%s,b--%s,c--%s' %(a, b, c))
+```
+
+# 023：菱形打印
+## 题目：打印出如下图案（菱形）:
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+```python
+lines = int(input('输入菱形行数（奇数）：'))
+mid = int(lines / 2) + 1        #中间行号
+for i in range(1,lines + 1):
+    space = abs(mid - i)        #空格数
+    print(' ' * space, '*' * (2 * (mid - space)  -1))
+```
+
+# 024：数列求和二
+## 题目：有一分数序列：2/1，3/2，5/3，8/5，13/8，21/13...求出这个数列的前20项之和。
+```python
+a = 2
+b = 1
+seq = []    #数列集合
+n = int(input('输入项数：'))
+for i in range(1, n + 1):
+    seq.append(a / b)
+    b, a = a, a + b
+print('前%d项的和为%f' %(n, sum(seq)))
+```
+
+# 025：数列求和三
+## 题目：求1+2!+3!+...+20!的和。
+```python
+n = int(input('输入项数：'))
+a = 1
+seq = []        #数列元素
+for i in range(1, n + 1):
+    a = a * i
+    seq.append(a)
+print('前%d项的和为%ld' %(n, sum(seq)))
+```
+
+# 026：递归求阶乘
+## 题目：利用递归方法求5!。
+```python
+def fac(n):
+    if n == 1:
+        return 1
+    else:
+        return n * fac(n - 1)
+
+n = int(input('输入阶乘项数：'))
+print(fac(n))
 ```
