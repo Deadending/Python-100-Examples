@@ -518,3 +518,81 @@ def fac(n):
 n = int(input('输入阶乘项数：'))
 print(fac(n))
 ```
+
+# 027：倒序打印
+## 题目：利用递归函数调用方式，将所输入的5个字符，以相反顺序打印出来。
+```python
+def Reverse_Order(l,n):
+    if n == 0:
+        return
+    print(l[n - 1])
+    Reverse_Order(l,n-1)
+
+
+l = input('输入一个字符串：')
+n = len(l)
+Reverse_Order(l,n)
+```
+
+# 028：岁数计算
+## 题目：有5个人坐在一起，问第五个人多少岁？他说比第4个人大2岁。问第4个人岁数，他说比第3个人大2岁。问第三个人，又说比第2人大两岁。问第2个人，说比第一个人大两岁。最后问第一个人，他说是10岁。请问第五个人多大？
+```python
+def Age(n):
+    if n == 1:
+        return 10
+    else:
+        return Age(n - 1) + 2
+    
+print(Age(5))
+```
+
+# 029：数字分解
+## 题目：给一个不多于5位的正整数，要求：一、求它是几位数，二、逆序打印出各位数字。
+- 实现方法一
+```python
+n = int(input('输入一个整数：'))
+a = n // 10000
+b = n % 10000 // 1000
+c = n % 1000 // 100
+d = n % 100 //10
+e = n % 10
+if a != 0:
+    print('5位数：',e,d,c,b,a)
+elif b != 0:
+    print('4位数：',e,d,c,b)
+elif c != 0:
+    print('3位数：',e,d,c)
+elif d != 0:
+    print('2位数：',e,d)
+else:
+    print('1位数：',e)
+```
+- 实现方法二
+```python
+n = int(input('输入一个整数：'))
+n_str = str(n)
+n_str_reverse = n_str[::-1]
+n_len = len(n_str)
+if n_len == 5:
+    print('5位数：',n_str_reverse)
+elif n_len == 4:
+    print('4位数：',n_str_reverse)
+elif n_len == 3:
+    print('3位数：',n_str_reverse)
+elif n_len == 2:
+    print('2位数：',n_str_reverse)
+elif n_len == 1:
+    print('1位数：',n_str_reverse)
+```
+
+# 030：回文数
+## 题目：一个5位数，判断它是不是回文数。即12321是回文数，个位与万位相同，十位与千位相同。
+```python
+x = int(input('输入一个整数：'))
+x_str = str(x)
+x_str_reverse = x_str[::-1]
+if x_str == x_str_reverse:
+    print(x,'是一个回文数！')
+else:
+    print(x,'不是一个回文数！')
+```
