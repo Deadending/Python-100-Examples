@@ -466,13 +466,13 @@ for a in ['y', 'z']:
 
 # 023：菱形打印
 ## 题目：打印出如下图案（菱形）:
-   *
-  ***
- *****
-*******
- *****
-  ***
-   *
+> &nbsp;&nbsp;&nbsp;&nbsp;\*  
+> &nbsp;&nbsp;&nbsp;\*\*\*  
+> &nbsp;&nbsp;\*\*\*\*\*  
+> &nbsp;\*\*\*\*\*\*\*  
+> &nbsp;&nbsp;\*\*\*\*\*  
+> &nbsp;&nbsp;&nbsp;\*\*\*  
+> &nbsp;&nbsp;&nbsp;&nbsp;\*
 ```python
 lines = int(input('输入菱形行数（奇数）：'))
 mid = int(lines / 2) + 1        #中间行号
@@ -595,4 +595,100 @@ if x_str == x_str_reverse:
     print(x,'是一个回文数！')
 else:
     print(x,'不是一个回文数！')
+```
+
+# 031：周几识别
+## 题目：请输入星期几的第一个字母来判断一下是星期几，如果第一个字母一样，则继续判断第二个字母。
+- 实现方法一：嵌套循环
+```python
+letter = input('Please input a upper letter:')
+if letter == 'M':
+    print('Monday!')
+elif letter == 'T':
+    letter = input('Please input another lower letter:')
+    if letter == 'u':
+        print('Tuesday!')
+    elif letter == 'h':
+        print('Thursday!')
+    else:
+        print('Input Error!')
+elif letter == 'W':
+    print('Wednesday!')
+elif letter == 'F':
+    print('Friday!')
+elif letter == 'S':
+    letter = input('Please input another lower letter:')
+    if letter == 'a':
+        print('Saturday!')
+    elif letter == 'u':
+        print('Sunday!')
+    else:
+        print('Input Error!')
+else:
+    print('Input Error!')
+```
+- 实现方法二：字典查询
+```python
+day_T = {'u':'Tuesday',
+        'h':'Thursday'}
+day_S = {'a':'Saturday',
+         'u':'Sunday'}
+day = {'M':'Monday',
+       'W':'Wednesday',
+       'F':'Friday',
+       'T':day_T,
+       'S':day_S}
+letter = day[input('Please input a upper letter:')]
+if letter == day_T or letter == day_S:
+    print(letter[input('Please input another lower letter:')])
+else:
+    print(letter)
+```
+
+# 032：列表反序
+## 题目：按相反的顺序输出列表的值。
+```python
+n = int(input('Input length of list:'))
+my_list = []
+for i in range(n):
+    my_list.append(input('Input something:'))
+print(my_list[::-1])
+```
+
+# 033：列表分割
+## 题目：按逗号分隔列表。
+```python
+my_list = [1,2,3,4,5,6]
+s = ','.join(str(n) for n in my_list)
+print(s)
+```
+
+# 034：函数练习
+## 题目：练习函数调用。
+```python
+def Hello():
+    print('Hello World!')
+def HelloAgain(n):
+    for i in range(n):
+        Hello()
+
+if __name__ == '__main__':
+    HelloAgain(3)
+```
+
+# 035：文本颜色
+## 题目：文本颜色设置。
+```python
+class bcolors:
+    HEADER = '\033[95m'     #淡紫色
+    OKBLUE = '\033[94m'     #深蓝色
+    OKGREEN = '\033[92m'    #深绿色
+    WARNING = '\033[93m'    #黄色
+    FAIL = '\033[91m'       #红色
+    ENDC = '\033[0m'        #重置文本的颜色和样式到默认设置
+    BOLD = '\033[1m'        #将文本设置为粗体
+    UNDERLINE = '\033[4m'   #将文本设置为下划线
+
+print(bcolors.WARNING + '文本颜色字体？' + bcolors.ENDC)
+print(bcolors.OKGREEN + bcolors.UNDERLINE +'文本颜色字体？' + bcolors.ENDC)
 ```
