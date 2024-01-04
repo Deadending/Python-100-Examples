@@ -692,3 +692,24 @@ class bcolors:
 print(bcolors.WARNING + '文本颜色字体？' + bcolors.ENDC)
 print(bcolors.OKGREEN + bcolors.UNDERLINE +'文本颜色字体？' + bcolors.ENDC)
 ```
+
+# 036：求素数
+## 题目：求100以内的素数
+```python
+import math 
+prime_list = []
+
+N = int(input("输入一个整数："))
+for num in range(2,N + 1):
+    for i in range(2,int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            break;
+    else:
+        prime_list.append(num)
+
+print("%d以内的素数个数为：%d，分别为" %(N, len(prime_list)))
+print(prime_list)
+```
+
+# 037：排序
+## 题目：对10个数进行排序
