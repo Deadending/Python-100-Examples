@@ -713,3 +713,25 @@ print(prime_list)
 
 # 037：排序
 ## 题目：对10个数进行排序
+
+# 038：对角线求和
+## 题目：求一个3*3矩阵主对角线元素只和
+```python
+if __name__ == '__main__':
+    n = int(input("请输入矩阵大小："))
+    a = []
+    sum = 0.0
+    for i in range(n):
+        a.append([])
+        for j in range(n):
+            a[i].append(float(input("输入矩阵元素：\n")))
+    
+    for i in range(n):
+        sum += a[i][i]
+    
+    print(a)
+    print(sum)
+```
+
+# 039：数据插入
+## 题目：有一个已经排好序的数组，咸输入一个数，要求按也来的规律将它插入数组中
