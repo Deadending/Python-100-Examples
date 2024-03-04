@@ -734,4 +734,248 @@ if __name__ == '__main__':
 ```
 
 # 039：数据插入
-## 题目：有一个已经排好序的数组，咸输入一个数，要求按也来的规律将它插入数组中
+## 题目：有一个已经排好序的数组，现输入一个数，要求按也来的规律将它插入数组中
+```python
+if __name__ == '__main__':
+    list_before = [1, 4, 6, 9, 13, 16, 19, 28, 40, 100]
+    num = int(input("输入插入的数字："))
+    list_before.append(num)
+    list_after = list_before[:]
+    for x in range(len(list_after), 0, -1):
+        if num > list_after[x - 2]:
+            list_after[x - 1] = num
+            break
+        else:
+            list_after[x - 1]= list_after[x - 2]
+    print("原始列表为：", list_before)
+    print("排序后列表为：", list_after)
+```
+
+# 040：逆序输出
+## 题目：将一个数组逆序输出
+```python
+if __name__ == '__main__':
+    list_before = [9,6,5,4,1]
+    print('原始列表为：', list_before)
+    l = len(list_before)
+    # 方法一：位置交换
+    for x in range(l //2 ):
+        list_before[x],list_before[l - x - 1] = list_before[l - x - 1],list_before[x]
+    list_after = list_before[:]
+    print('原始列表为：', list_after)
+
+    # 方法二：reverse函数
+    list_before.reverse()
+    list_after = list_before[:]
+    print('原始列表为：', list_after)
+```
+
+# 041：静态变量一
+## 题目：模仿静态变量的用法
+```python
+def varfunc():
+    var = 0
+    print('var = %d' % var)
+    var += 1
+
+if __name__ == '__main__':
+    for i in range(3):
+        varfunc()
+
+# 类的属性
+class Static:
+    StaticVar = 5
+    def varfunc(self):
+        self.StaticVar += 1
+        print(self.StaticVar)
+
+print(Static.StaticVar)
+a = Static()
+for i in range(3):
+    a.varfunc()
+```
+
+# 042：auto变量
+## 题目：学习使用auto定义变量的用法
+## 程序分析：变量作用域举例
+```python
+num = 2
+def autofunc():
+    num = 1
+    print('internal block num = %d' % num)
+    num += 1
+
+for i in range(3):
+    print('The num = %d' % num)
+    num += 1
+    autofunc()
+```
+
+# 043：静态变量二
+## 题目：模仿静态变量另一案例
+## 程序分析：作用域举例
+```python
+class Num:
+    nNum = 1
+    def inc(self):
+        self.nNum += 1
+        print('nNum = %d' % self.nNum)
+
+if __name__ == '__main__':
+    nNum = 2
+    inst = Num()
+    for i in range(3):
+        nNum += 1
+        print('The num = %d' % nNum)
+        inst.inc()
+```
+
+# 044：矩阵相加
+## 题目：两个 3 行 3 列的矩阵，实现其对应位置的数据相加，并返回一个新矩阵
+```python
+X = [[12, 7, 3],
+     [4, 5, 6],
+     [7, 8, 9]]
+
+Y = [[5, 8, 1],
+     [6, 7, 3],
+     [4, 5, 9]]
+
+result = []
+for i in range(3):
+    result.append([])
+
+for i in range(3):
+    for j in range(3):
+        result[i].append(X[i][j] + Y[i][j])
+
+for r in result:
+    print(r)
+```
+
+# 045：求和
+## 题目：统计1~100的和
+```python
+sum = 0
+for i in range(1, 101):
+    sum += i
+print('The sum is %d' %sum)
+```
+
+# 046：平方计算
+## 题目：求输入数字的平方，如果平方运算后小于 50 则退出。
+```python
+TRUE = 1
+FALSE = 0
+def Square(x):
+    return x * x
+flag = 1
+while flag:
+    num = int(input('请输入一个数字：'))
+    print('运算结果为：%d' % (Square(num)))
+    if Square(num) >= 50:
+        flag = TRUE
+    else:
+        flag = FALSE
+```
+
+# 047：数字交换
+## 题目：两个变量值互换
+```python
+def Exchange(a,b):
+    a, b = b, a
+    return (a, b)
+
+if __name__ == '__main__':
+    x = int(input('请输入一个数字：'))
+    y = int(input('请输入另外一个数字：'))
+    print('交换前x = %d, y = %d' %(x,y))
+    x, y = Exchange(x,y)
+    print('交换后x = %d, y = %d' %(x,y))
+```
+
+# 048：数字比较
+## 题目：比较两个数字的大小
+```python
+if __name__ == '__main__':
+    x = int(input('请输入一个数字：'))
+    y = int(input('请输入另外一个数字：'))
+    if x > y:
+        print('%d 大于 %d' %(x,y))
+    elif x == y:
+        print('%d 等于 %d' %(x,y))
+    else:
+        print('%d 小于 %d' %(x,y))
+```
+
+# 049：匿名函数
+## 题目：使用lambda创建匿名函数
+```python
+MAXIMUM = lambda x, y: (x > y) * x + (x < y) * y
+MINIMUM = lambda x, y: (x > y) * y + (x < y) * x
+
+if __name__ == '__main__':
+    a = 10
+    b=  20
+    print('The larger one is %d' % MAXIMUM(a, b))
+    print('The lower one is %d' % MINIMUM(a, b))
+```
+
+# 050：随机数
+## 题目：输出一个随机数
+```python
+import random
+
+# 输出0~1之间的随机数
+print(random.random())
+# 输出10~20之间的随机数
+print(random.uniform(10,20))
+# 输出10~100之间的随机整数
+print(random.randint(10,100))
+```
+
+# 051：按位与
+```python
+if __name__ == '__main__':
+    a = 0x77
+    b = a & 3
+    print('a & b = %d' % (a & b))
+    b &= 7
+    print('a & b = %d' % (a & b))
+```
+
+# 052：按位或
+```python
+if __name__ == '__main__':
+    a = 0x77
+    b = a | 3
+    print('a | b = %d' % (a | b))
+    b |= 7
+    print('a | b = %d' % (a | b))
+```
+
+# 053：按位异或
+```python
+if __name__ == '__main__':
+    a = 0x77
+    b = a ^ 3
+    print('a ^ b = %d' % (a ^ b))
+    b ^= 7
+    print('a ^ b = %d' % (a ^ b))
+```
+
+# 054：按位取数
+## 题目：取一个整数a从右端开始的4〜7位。
+```python
+if __name__ == '__main__':
+    x = int(input('Input a number:'))
+    y = x >> 4
+    c = ~(~0 << 4)
+    x_output = y & c
+    # 转换成二进制数
+    x = bin(x)
+    x_output = bin(x_output)
+    print('%s \t %s' %(x, x_output))
+```
+
+# 055：按位取反
