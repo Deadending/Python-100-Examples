@@ -979,3 +979,112 @@ if __name__ == '__main__':
 ```
 
 # 055：按位取反
+```python
+a = 7 
+b = ~a
+
+c = -7
+d = ~c
+print('%d 取反结果为：%d' %(a, b))
+print('%d 取反结果为：%d' %(c, d))
+```
+
+# 056：画圆
+## 题目：使用circle画圆
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+if __name__ == '__main__':
+    x = y = np.arange(-11, 11, 0.1)
+    x, y = np.meshgrid(x, y)
+    for i in range(1, 11):
+        plt.contour(x, y, x**2 + y**2, [i**2])
+        plt.axis('scaled')
+    plt.show()
+```
+
+# 057：画直线
+```python
+from tkinter import *
+
+if __name__ == '__main__':
+    canvas = Canvas(width=300, height=300, bg='white')
+    canvas.pack(expand=YES, fill=BOTH)
+    x0 = 263
+    y0 = 263
+    x1 = 275
+    y1 = 275
+    for i in range(19):
+        canvas.create_line(x0, y0, x0, y1, width=1, fill='black')
+        x0 -= 5
+        y0 -= 5
+        x1 += 5
+        y1 += 5
+
+    mainloop()
+```
+
+# 058：画方形
+```python
+from tkinter import *
+
+if __name__ == '__main__':
+    root = Tk()
+    root.title('Rectangle')
+    canvas = Canvas(root, width=400, height=400, bg='white')
+    x0 = 263
+    y0 = 263
+    x1 = 275
+    y1 = 275
+    for i in range(19):
+        canvas.create_rectangle(x0, y0, x1, y1)
+        x0 -= 5
+        y0 -= 5
+        x1 += 5
+        y1 += 5
+
+    canvas.pack()
+    root.mainloop()
+```
+
+# 059：画图
+```python
+from tkinter import *
+import math
+
+if __name__ == '__main__':
+    canvas = Canvas(width=300, height=300, bg='white')
+    canvas.pack(expand=YES, fill=BOTH)
+    x0 = 150
+    y0 = 150
+    canvas.create_oval(x0 - 10, y0 - 10, x0 + 10, y0 + 10)
+    canvas.create_oval(x0 - 20, y0 - 20, x0 + 20, y0 + 20)
+    canvas.create_oval(x0 - 50, y0 - 50, x0 + 50, y0 + 50)
+    B = 0.809
+    for i in range(16):
+        a = 2 * math.pi / 16 * i
+        x = math.ceil(x0 + 48 * math.cos(a))
+        y = math.ceil(y0 + 48 * math.sin(a) * B)
+        canvas.create_line(x0, y0, x, y, fill='black')
+    canvas.create_oval(x0 - 60, y0 - 60, x0 + 60, y0 + 60)
+
+    for k in range(501):
+        for i in range(17):
+            a = (2 * math.pi / 16) * i + (2 * math.pi / 180) * k 
+            x = math.ceil(x0 + 48 * math.cos(a))
+            y = math.ceil(y0 + 48 * math.sin(a) * B)
+            canvas.create_line(x0, y0, x, y, fill='red')
+        for j in range(51):
+            a = (2 * math.pi / 16) * i + (2 * math.pi / 180) * k - 1
+            x = math.ceil(x0 + 48 * math.cos(a))
+            y = math.ceil(y0 + 48 * math.sin(a) * B)
+            canvas.create_line(x0, y0, x, y, fill='blue')
+    mainloop()
+```
+
+# 060：字符串长度
+```python
+sString = 'string'
+print(len(sString))
+```
