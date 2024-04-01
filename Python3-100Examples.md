@@ -1194,3 +1194,102 @@ def Line2Demo():
 if __name__ == '__main__':
     Line2Demo()
 ```
+
+# 066：顺序输出
+```python
+if __name__ == '__main__':
+    num_list = []
+    for i in range(3):
+        num_list.append(int(input('Input a number:')))
+    num_list.sort()
+    print(num_list)
+```
+
+# 067：交换输出
+## 题目：输入数组，最大的与第一个元素交换，最小的与最后一个元素交换，输出数组。
+```python
+def find_max(array):
+    max = 0
+    for i in range(1, len(array)):        
+        p = i
+        if array[p] > array[max]:
+            max = p
+    return max
+
+def find_min(array):
+    min = 0
+    for i in range(1, len(array)):        
+        p = i
+        if array[p] < array[min]:
+            min = p
+    return min
+
+if __name__ == '__main__':
+    N = int(input('Input the length of array:'))
+    array = []
+    for i in range(N):
+        array.append(int(input('Input a number:')))
+    print("交换前：", end='')
+    print(array)
+    max_index = find_max(array)
+    min_index = find_min(array)
+    # 如果第一个值是最小值，先交换最小值
+    if min_index == 0:
+            # 如果第一个值是最小值，最后一个值是最大值，直接首尾交换
+        if  max_index == N - 1:
+            array[0], array[N - 1] = array[N - 1], array[0]
+        else:
+            array[N - 1], array[min_index] = array[min_index], array[N - 1]
+            array[0], array[max_index] = array[max_index], array[0]
+    # 其他情况直接交换
+    else:
+        array[0], array[max_index] = array[max_index], array[0]
+        array[N - 1], array[min_index] = array[min_index], array[N - 1]
+    print("交换后：", end='')
+    print(array)
+```
+
+# 068：数字移动
+## 题目：有 n 个整数，使其前面各数顺序向后移 m 个位置，最后 m 个数变成最前面的 m 个数
+```python
+if __name__ == '__main__':
+    m = int(input("Input the number of moves:"))
+    n = int(input("Input length of the list:"))
+    array = []
+    for i in range(n):
+        array.append(int(input("Input a number:")))
+    print("移动前：", array)
+    array = array[n - m: n] + array[0: n - m]
+    print("移动后：", array)
+```
+
+# 069：围圈报数
+## 题目：有n个人围成一圈，顺序排号。从第一个人开始报数（从1到3报数），凡报到3的人退出圈子，问最后留下的是原来第几号的那位。
+```python
+if __name__ == '__main__':
+    N = int(input("Input the num of people:"))
+    people = [i + 1 for i in range(N)]
+    index = 1
+    while len(people) > 1:
+        if index % 3 == 0:
+            people.pop(0)
+        else:
+            people.insert(len(people), people.pop(0))
+        index += 1
+    print(people)
+```
+
+# 070：字符串长度
+## 题目：写一个函数，求一个字符串的长度，在main函数中输入字符串，并输出其长度。
+```python
+def len_of_string(string):
+    sum = 0
+    for s in string:
+        sum += 1
+    return sum
+
+if __name__ =='__main__':
+    s = input('Input a string:')
+    length = len_of_string(s)
+    print("The string has %d characters." %length)
+```
