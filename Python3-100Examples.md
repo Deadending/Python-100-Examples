@@ -1672,4 +1672,51 @@ if __name__ == '__main__':
     print(count)
 ```
 
-# 097：文件写入
+# 097：文件写入1
+## 题目：从键盘输入一些字符，逐个把它们写到磁盘文件上，直到输入一个 # 为止。
+```python
+if __name__ == '__main__':
+    filename = input('输入文件名：')
+    file_path = r"D:\Coding\Python-100-Examples\100Examples\{}.txt".format(filename)
+    ch = ''
+    while '#' not in ch:
+        with open(file_path, 'a', encoding= 'utf-8') as f:
+            f.write(ch + '\n')
+        ch = input('输入字符串：')
+```
+
+# 098：文件写入2
+## 题目：从键盘输入一个字符串，将小写字母全部转换成大写字母，然后输出到一个磁盘文件"test"中保存。
+```python
+if __name__ == '__main__':
+    file_path = r"D:\Coding\Python-100-Examples\100Examples\test.txt"
+    string = input('Input a string:')
+    string = string.upper()
+    with open(file_path, 'a', encoding= 'utf-8') as f:
+        f.write(string + '\n')
+    with open(file_path, 'r', encoding= 'utf-8') as f:
+        print(f.read())
+```
+
+# 099：文件写入3
+## 题目：有两个磁盘文件A和B,各存放一行字母,要求把这两个文件中的信息合并(按字母顺序排列), 输出到一个新文件C中。
+```python
+if __name__ == '__main__':
+    with open('100Examples/097test.txt', 'r', encoding='utf-8') as f:
+        a = f.read()
+    with open('100Examples/test.txt', 'r', encoding='utf-8') as f:
+        b = f.read()
+    file_path = r"D:\Coding\Python-100-Examples\100Examples\099test.txt"
+    with open(file_path, 'a+', encoding='utf-8') as f:
+        c = list(a+b)
+        c.sort()
+        sorted_string = ''.join(c)
+        f.write(sorted_string)
+```
+
+# 100：列表转换字典
+```python
+key_list = ['a', 'b']
+value_list = [1, 2]
+print(dict(zip(key_list, value_list)))
+```
