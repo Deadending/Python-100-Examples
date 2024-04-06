@@ -1293,3 +1293,383 @@ if __name__ =='__main__':
     length = len_of_string(s)
     print("The string has %d characters." %length)
 ```
+
+# 071：输入输出
+## 题目：编写input()和output()函数输入，输出5个学生的数据记录。
+```python
+class Student:
+    name = ''
+    age = 0 
+    score = [None] * 4
+
+    def input_stu(self):
+        self.name = input("Input name:")
+        self.age = int(input("Input age:"))
+        for i in range(len(self.score)):
+            self.score[i] = int(input('Input %d score:' %(i + 1)))
+        
+    def output_stu(self):
+        print("Name：%s" % self.name)
+        print("Age: %d" % self.age)
+        for i in range(len(self.score)):
+            print("%d score：%d" %((i + 1), self.score[i]))
+
+if __name__ == '__main__':
+    N = 5
+    studentArray = [Student()] * N
+    for i in range(len(studentArray)):
+        studentArray[i].input_stu()
+
+    for i in range(len(studentArray)):
+        studentArray[i].output_stu()
+```
+
+# 072：链表
+## 题目：创建一个链表
+```python
+ptr = [int(input("Input a number:")) for i in range(5)]
+print(ptr)
+```
+
+# 073：链表输出
+## 题目：反向输出一个链表
+```python
+ptr = [int(input("Input a number:")) for i in range(5)]
+print(ptr)
+ptr.reverse()
+print(ptr)
+```
+
+# 074：列表排序
+## 题目：列表排序及连接
+```python
+list_a = [1, 3, 2]
+list_b = [5, 6, 4]
+print("a排序前：", list_a)
+list_a.sort()
+print("a排序后：", list_a)
+
+print("a、b连接后：", list_a + list_b)
+```
+
+# 075：无
+
+# 076：奇偶求和
+## 题目：编写一个函数，输入n为偶数时，调用函数求1/2+1/4+...+1/n,当输入n为奇数时，调用函数1/1+1/3+...+1/n
+```python
+def Sum(num):
+    sum = 0
+    if num % 2 == 0:
+        for i in range(2, num + 1, 2):
+            sum += 1.0 / i
+    else:
+        for i in range(1, num + 1, 2):
+            sum += 1.0 / i
+    return sum
+
+if __name__ == '__main__':
+    n = int(input("Input a number:"))
+    sum = Sum(n)
+    print(sum)
+```
+
+# 077：循环输出
+## 题目：循环输出列表
+```python
+if __name__ == '__main__':
+    s = ["father","mother","brother","sister"]
+    for i in range(len(s)):
+        print(s[i])
+```
+
+# 078：年龄排序
+## 题目：找到年龄最大的人，并输出。
+```python
+if __name__ == '__main__':
+    person = {"li":18,"wang":50,"zhang":20,"sun":22}
+    max_age = 0
+    for key, value in person.items():
+        if value > max_age:
+            max_age = value
+            name = key
+    print("The oldest gay is %s. His age is %d." %(name, max_age))
+```
+
+# 079：字符串排序
+```python
+if __name__ == '__main__':
+    str_list1 = []
+    str1 = input("Input a string:")
+    str2 = input("Input a string:")
+    str3 = input("Input a string:")
+    str_list1.extend([str1, str2, str3])
+    print(str_list1)
+    str_list1.sort()
+    print(str_list1)
+```
+
+# 080：猴子分桃
+## 题目：海滩上有一堆桃子，五只猴子来分。第一只猴子把这堆桃子平均分为五份，多了一个，这只猴子把多的一个扔入海中，拿走了一份。第二只猴子把剩下的桃子又平均分成五份，又多了一个，它同样把多的一个扔入海中，拿走了一份，第三、第四、第五只猴子都是这样做的，问海滩上原来最少有多少个桃子？
+```python
+def find_min_peaches(remaining_peaches):
+    while 1:
+        total_peaches = remaining_peaches
+        for i in range(5):
+            if total_peaches % 5 != 1:
+                break
+            total_peaches = (total_peaches - 1) // 5 * 4
+        else:
+            return remaining_peaches
+        remaining_peaches += 1
+
+if __name__ == '__main__':
+    remaining_peach_min = 1
+    min_peaches = find_min_peaches(remaining_peach_min)
+    print("海滩上原来最少有 %d 个桃子。" % min_peaches)
+```
+
+# 081：方程计算
+## 题目：809*??=800*??+9*?? 其中??代表的两位数, 809*??为四位数，8*??的结果为两位数，9*??的结果为3位数。求??代表的两位数，及809*??后的结果。
+```python
+if __name__ == '__main__':
+    a = 809
+    for i in range(10,100):
+        b = a * i
+        if (b < 10000) and (8 * i < 1000) and (9 * i >= 100):
+            print('??代表的是%d，809*??的结果是%d。' %(i, (809 * i)))
+```
+
+# 082：进制转换
+## 题目：八进制转换为十进制
+```python
+def oct2dec(num):
+    num_dec = 0
+    for i in range(len(num)):
+        num_dec += 8 ** i * int(num[len(num) - 1 - i])
+    return num_dec
+
+if __name__ == '__main__':
+    num_oct = input("Input a octal number:")
+    num_dec = oct2dec(num_oct)
+    print("八进制数", num_oct, "转换为十进制数为:", num_dec)
+
+```
+
+# 083：数字组合
+## 题目：求0—7所能组成的奇数个数。
+```python
+if __name__ == '__main__':
+    sum = 4
+    i = 4
+    for j in range(2,9):
+        if j <= 2:
+            i = i * 7
+        else:
+            i = i * 8
+        sum += i
+        print("0—7能组成%7d个%d位数奇数" %(i, j))
+    print("0—7一共能组成%d个奇数" %sum)
+```
+
+# 084：字符串连接
+```python
+delimiter = ','
+mylist = ['Brazil', 'Russia', 'India', 'China']
+print(delimiter.join(mylist))
+```
+
+# 085：数字猜测
+## 题目：输入一个奇数，然后判断最少几个 9 除于该数的结果为整数。
+```python
+if __name__ == '__main__':
+    divisor_num = int(input("Input a odd number:"))
+    dividend_num = 9
+    count = 1
+    while 1:
+        if dividend_num % divisor_num == 0:
+            break
+        else:
+            dividend_num = dividend_num * 10 + 9
+            count += 1
+    print("%d个9除以%d的结果为整数" %(count, divisor_num))
+    print("%d / %d = %d" %(dividend_num, divisor_num, dividend_num / divisor_num))
+```
+
+# 086：字符串连接
+```python
+if __name__ == '__main__':
+    string0 = ''
+    string1 = "acegikm"
+    string2 = "bdfhjlnpq"
+ 
+    # 连接字符串
+    my_string = string1 + string2
+    print(my_string)
+    print(string0.join([string1,string2]))
+```
+
+# 087：回答结果
+## 题目：结构体变量传递
+```python
+class Student:
+    a = 0
+    c = 0
+def fn(stu):
+    stu.a = 20
+    stu.c = 'x'
+
+if __name__ == '__main__':
+    student = Student()
+    student.a = 10
+    student.c = 'c'
+
+    fn(student)
+
+    print(student.a, student.c)
+```
+
+# 088：计算
+## 题目：读取7个数（1—50）的整数值，每读取一个值，程序打印出该值个数的*。
+```python
+import random
+
+if __name__ == '__main__':
+    n = random.randint(0,50)
+    print(n, n * '*')
+```
+
+# 089：加密传输
+## 题目：某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，加密规则如下：每位数字都加上5,然后用和除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换。
+```python
+if __name__ == '__main__':
+    original_num = input('Input a four-figit number:')
+    encrypted_num = 0
+    encrypted_num_list = []
+    for i in range(4):
+        encrypted_num_list.append((int(original_num[i]) + 5) % 10)
+    encrypted_num_list[0], encrypted_num_list[3] = encrypted_num_list[3], encrypted_num_list[0]
+    encrypted_num_list[1], encrypted_num_list[2] = encrypted_num_list[2], encrypted_num_list[1]
+    for i in range(4):
+        encrypted_num += encrypted_num_list[i] * 10 ** (3 - i)
+    print(encrypted_num)
+```
+
+# 090：列表使用
+```python
+#新建列表  
+testList=[10086,'中国移动',[1,2,4,5]]  
+  
+#访问列表长度  
+print(len(testList))
+#到列表结尾  
+print(testList[1:])
+#向列表添加元素  
+testList.append('i\'m new here!')  
+  
+print(len(testList)) 
+print(testList[-1])
+#弹出列表的最后一个元素  
+print(testList.pop(1))
+print(len(testList))
+print(testList)
+#list comprehension  
+#后面有介绍，暂时掠过  
+matrix = [[1, 2, 3],  
+[4, 5, 6],  
+[7, 8, 9]]  
+print(matrix)
+print(matrix[1])
+col2 = [row[1] for row in matrix]#get a  column from a matrix  
+print(col2)
+col2even = [row[1] for row in matrix if  row[1] % 2 == 0]#filter odd item  
+print(col2even)
+```
+
+# 091：时间函数1
+```python
+import time
+
+if __name__ == '__main__':
+    print(time.ctime(time.time()))
+    print(time.asctime(time.localtime(time.time())))
+    print(time.asctime(time.gmtime(time.time())))
+```
+
+# 092：时间函数2
+```python
+import time
+
+if __name__ == '__main__':
+    start = time.time()
+    for i in range(3000):
+        print(i)
+    end = time.time()
+
+    print(end - start)
+```
+
+# 093：时间函数3
+```python
+import time
+
+if __name__ == '__main__':
+    start = time.process_time()
+    for i in range(10000):
+        print(i)
+    end = time.process_time()
+    print('different is %6.3f' %(end - start))
+```
+
+# 094：时间函数4
+## 题目：一个猜数游戏，判断一个人反应快慢。
+```python
+import time
+import random
+
+if __name__ == '__main__':
+    flag = input('Do you want to play it?(\'y\' or \'n\')')
+    while flag == 'y':
+        print("随机数生成中...")
+        goal_num = random.randint(1,100)
+        print("随机数生成完毕！")
+
+        start = time.perf_counter()
+        guess_num = int(input('Input your guess:'))
+        while guess_num != goal_num:
+            if guess_num > goal_num:
+                print('Please input a smaller number:')
+                guess_num = int(input('Input your guess:'))
+            else:
+                print('Please input a bigger number:')
+                guess_num = int(input('Input your guess:'))
+        end = time.perf_counter()
+        var = end - start
+        print('It tooks your %6.3f s' %var)
+        if var < 15:
+            print('You are very clever!')
+        elif var < 25:
+            print('You are normal.')
+        else:
+            print('You are stupid!')
+        flag = input('Do you want to play it again?(\'y\' or \'n\')')
+```
+
+# 095：日期读取
+## 题目：字符串日期转换为易读的日期格式。
+```python
+from dateutil import parser
+dt = parser.parse("Apr 6 2024 4:26PM")
+print(dt)
+```
+
+# 096：子串计算
+## 题目：计算字符串中子串出现的次数。
+```python
+if __name__ == '__main__':
+    str1 = input('Input a string:')
+    str2 = input('Input a string:')
+    count = str1.count(str2)
+    print(count)
+```
+
+# 097：文件写入
